@@ -1,0 +1,47 @@
+version: '3'
+
+networks:
+  backend:
+    driver: bridge
+
+services:
+
+### php-apache ############################################
+    php-apache:
+      build:
+        context: php-apache
+      tty: true
+      ports:
+        - "8080:80"
+      volumes:
+        - ../src:/var/www:cached
+      environment:
+        - TZ=UTC
+      networks:
+        - backend
+
+### MySQL ################################################
+    mysql:
+      image: "mysql:5.7"
+      environment:
+        - MYSQL_DATABASE=homestead
+        - MYSQL_USER=homestead
+        - MYSQL_PASSWORD=secret
+        - MYSQL_ROOT_PASSWORD=secret
+        - TZ=UTC
+      #volumes:
+        # - ${DATA_PATH_HOST}/mysql:/var/lib/mysql
+        #- ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      ports:
+        - "3306:3306"
+      networks:
+        - backend
+### Redis ################################################
+#    redis:
+#      build: ./redis
+#      volumes:
+#      - ${DATA_PATH_HOST}/redis:/data
+#      ports:
+#      - "${REDIS_PORT}:6379"
+#      networks:
+#      - backend
