@@ -25,6 +25,8 @@ RUN pecl channel-update pecl.php.net && pecl install memcached mcrypt-1.0.2 && d
 RUN curl -s http://getcomposer.org/installer | php && \
     echo "export PATH=${PATH}:/var/www/vendor/bin" >> ~/.bashrc && \
     mv composer.phar /usr/local/bin/composer
+RUN composer config -g repos.packagist composer https://packagist.jp && \
+    composer global require hirak/prestissimo
 RUN a2enmod rewrite
 COPY ./sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf
 WORKDIR /var/www/
