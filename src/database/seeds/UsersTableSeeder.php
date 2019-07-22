@@ -12,18 +12,18 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-//        DB::table('users')->insert([
-//            'name' => '中村太一',
-//            'email' => 'taichi@asaichi.co.jp',
-//            'password' => bcrypt('secret'),
-//        ]);
-//
-//        $user = new User();
-//        $user->name = '中村太一2';
-//        $user->email = 'taichi2@asaichi.co.jp';
-//        $user->password = bcrypt('secret');
-//        $user->save();
+        DB::table('users')->insert([
+            'name' => '中村太一',
+            'email' => 'taichi@asaichi.co.jp',
+            'password' => bcrypt('secret'),
+        ]);
 
-        factory(User::class, 20)->create();
+        $user = new User();
+        $user->name = '中村太一2';
+        $user->email = 'taichi2@asaichi.co.jp';
+        $user->password = bcrypt('secret');
+        $user->save();
+
+//        factory(User::class, 20)->create();
     }
 }
