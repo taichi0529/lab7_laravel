@@ -14,7 +14,9 @@ use Illuminate\Http\Request;
 */
 
 Route::group(['prefix' => 'v1'], function () {
+    // Middlewareのテスト。App\Http\Kernelにtestという名前でMiddlewareを登録している。
     Route::get('test/{id}', 'WorkController@test')->middleware('test');
+
     Route::post('auth/register', 'AuthController@register');
     Route::post('auth/login', 'AuthController@login');
     Route::post('auth/refresh', 'AuthController@refresh');
