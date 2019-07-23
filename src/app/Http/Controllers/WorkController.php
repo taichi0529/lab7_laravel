@@ -7,6 +7,16 @@ use Illuminate\Http\Request;
 
 class WorkController extends Controller
 {
+
+    /**
+     * middlewareのテスト用アクション
+     *
+     * @param int $id
+     * @return int
+     */
+    public function test(int $id) {
+        return $id;
+    }
     /**
      * Display a listing of the resource.
      *
