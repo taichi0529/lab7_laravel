@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
     public function login(Request $request) {
         $credentials = request(['email', 'password']);
-        if (! $token = auth()->attempt($credentials)) {
+        if (! $token = auth()->claims(['foo' => 'bar'])->attempt($credentials)) {
             return response()->json(['error' => '認証失敗'], 401);
         }
         return $this->respondWithToken($token);
@@ -22,4 +23,27 @@ class AuthController extends Controller
             'expires_in' => auth()->factory()->getTTL() * 60
         ]);
     }
+
+    public function register(Request $request)
+    {
+        return User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+        ]);
+    }
+    public function me()
+    {
+        return response()->json(auth()->user());
+    }
+    public function logout()
+    {
+        auth()->logout();
+        return response()->json(['message' => 'Successfully logged out']);
+    }
+    public function refresh()
+    {
+        return $this->respondWithToken(auth()->refresh());
+    }
+
 }
