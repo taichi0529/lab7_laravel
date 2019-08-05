@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\Work as Resource;
 use App\Models\Work;
 use Illuminate\Http\Request;
+use DB;
 
 class WorkController extends Controller
 {
@@ -25,9 +26,19 @@ class WorkController extends Controller
     public function index()
     {
         //
-        return Resource::collection(
-            Work::All()
+//        return Resource::collection(
+//            Work::All()
+//        );
+        // https://readouble.com/laravel/5.5/ja/eloquent-relationships.html#eager-loading
+        DB::enableQueryLog();
+        $result = Resource::collection(
+//            Work::All()
+            Work::with(['owner'])->get()
         );
+        $json = $result->toJson();
+        dd(DB::getQueryLog());
+        return $json;
+
     }
 
     /**
