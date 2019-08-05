@@ -26,5 +26,8 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         //
+        Gate::define('update-mywork', function ($user, $work) {
+            return $user->id == $work->owner_id;
+        });
     }
 }

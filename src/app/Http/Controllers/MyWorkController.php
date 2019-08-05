@@ -77,6 +77,8 @@ class MyWorkController extends Controller
      */
     public function update(UpdateRequest $request, Work $work)
     {
+//        $this->authorize('update-mywork', $work);
+//        $this->authorize('update', $work);
         $work->fill($request->json()->all());
         $work->save();
         return new Resource($work);
