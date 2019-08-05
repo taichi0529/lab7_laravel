@@ -20,10 +20,10 @@ class Work extends Resource
             "reward" => $this->reward,
             "description" => $this->description,
             "entry_end_at" => $this->entry_end_at,
-//            "owner" => [
-//                "id" => $this->owner->id,
-//                "name" => $this->owner->name,
-//            ],
+            "owner" => [
+                "id" => $this->owner->id,
+                "name" => $this->owner->name,
+            ],
         ];
     }
 }

@@ -10,6 +10,7 @@ class Kernel extends HttpKernel
      * The application's global HTTP middleware stack.
      *
      * These middleware are run during every request to your application.
+     * ミドルウェアをアプリケーションの全HTTPリクエストで実行したい場合は
      *
      * @var array
      */
@@ -23,6 +24,8 @@ class Kernel extends HttpKernel
 
     /**
      * The application's route middleware groups.
+     * グループ化できる。
+     * RouteServiceProvider内でwebはweb.php, apiはapi.phpに自動適用されている。
      *
      * @var array
      */
@@ -47,6 +50,7 @@ class Kernel extends HttpKernel
      * The application's route middleware.
      *
      * These middleware may be assigned to groups or used individually.
+     * 特定のルートのみに対しミドルウェアを指定したい場合
      *
      * @var array
      */
@@ -57,5 +61,6 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'test' => \App\Http\Middleware\Test::class,
     ];
 }
