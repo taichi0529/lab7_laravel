@@ -6,6 +6,7 @@ use App\Http\Resources\Work as Resource;
 use App\Models\Work;
 use Illuminate\Http\Request;
 use App\Http\Requests\MyWork\Store as StoreRequest;
+use App\Http\Requests\MyWork\Update as UpdateRequest;
 
 class MyWorkController extends Controller
 {
@@ -53,7 +54,7 @@ class MyWorkController extends Controller
      */
     public function show(Work $work)
     {
-        //
+        return new Resource($work);
     }
 
     /**
@@ -74,9 +75,11 @@ class MyWorkController extends Controller
      * @param  \App\Models\Work  $work
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Work $work)
+    public function update(UpdateRequest $request, Work $work)
     {
-        //
+        $work->fill($request->json()->all());
+        $work->save();
+        return new Resource($work);
     }
 
     /**
