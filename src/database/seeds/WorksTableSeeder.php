@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Models\Work;
 
-class WorkTableSeeder extends Seeder
+class WorksTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,8 +13,6 @@ class WorkTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create('ja_JP');
-
-
         for ($i=0; $i<20; $i++) {
             $work = new Work();
             $work->title = "おしごと" . $i;
