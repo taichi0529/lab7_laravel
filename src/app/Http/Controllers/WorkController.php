@@ -57,9 +57,15 @@ class WorkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Work $work)
+    // https://readouble.com/laravel/5.5/ja/routing.html#route-model-binding
+//    public function show(Work $work)
+//    {
+//        return new Resource($work);
+//    }
+    public function show($id)
     {
-        return new Resource($work);
+        $work = new Work();
+        return new Resource($work->find($id));
     }
 
     /**
