@@ -26,18 +26,18 @@ class WorkController extends Controller
     public function index()
     {
         //
-//        return Resource::collection(
-//            Work::All()
-//        );
-        // https://readouble.com/laravel/5.5/ja/eloquent-relationships.html#eager-loading
-        DB::enableQueryLog();
-        $result = Resource::collection(
-//            Work::All()
-            Work::with(['owner'])->get()
+        return Resource::collection(
+            Work::All()
         );
-        $json = $result->toJson();
-        dd(DB::getQueryLog());
-        return $json;
+        // https://readouble.com/laravel/5.5/ja/eloquent-relationships.html#eager-loading
+//        DB::enableQueryLog();
+//        $result = Resource::collection(
+////            Work::All()
+//            Work::with(['owner'])->get()
+//        );
+//        $json = $result->toJson();
+//        dd(DB::getQueryLog());
+//        return $json;
 
     }
 
