@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendMail;
 use App\Mail\Test;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -35,7 +36,7 @@ class AuthController extends Controller
             'password' => bcrypt($request->input('password')),
         ]);
 
-        Mail::to($user->email)->send(new Test($user));
+        SendMail::dispatch($user);
 
         return $user;
     }
