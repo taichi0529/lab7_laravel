@@ -29,3 +29,14 @@ docker-compose exec php-apache php artisan key:generate
 ### URL
 
 http://localhost:8080/
+
+
+## 画面遷移図
+
+https://xd.adobe.com/view/f9358459-5f3e-4b15-5f09-2550a975abbc-8f04
+
+これをつくるという体でAPIを作る練習をします。
+
+## API設計図
+
+https://app.swaggerhub.com/apis/taichi0529/laravel_class/1.0.0#/
